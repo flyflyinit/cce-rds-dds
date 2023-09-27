@@ -1,2 +1,55 @@
 # Simple deployment of an Apache/PHP stack on CCE Cluster connecting to RDS(MySQL) and DDS(MongoDB) databases
-Docker deployment of an Apache/PHP stack connecting to RDS and DDS databases
+This README provides instructions for deploying an Apache/PHP stack on a CCE Cluster, with connections to RDS (MySQL) and DDS (MongoDB) databases. This deployment is achieved using Docker and Helm charts.
+
+## Prerequisites
+Before deploying the Apache/PHP stack on your CCE Cluster, ensure you have the following prerequisites in place:
+
+- RDS (MySQL) Database: Set up and configure an RDS MySQL database for your application.
+- DDS (MongoDB) Database: Create and configure a DDS MongoDB database for your application.
+- CCE Cluster: You should have a Container Cloud Engine (CCE) Cluster provisioned and accessible.
+- SWR Organization: Ensure that you have access to the SWR (ServiceWare Registry) organization for container image storage.
+
+### Setup Php environment variables
+Update environment variables with your MySQL and MongoDB credentials, on index.php
+
+### Build Docker image from Dockerfile
+
+First, build the Docker image from the provided Dockerfile using the following command:
+
+```
+sudo docker build --tag apache-php:latest .
+```
+
+Once the image is built, you can deploy it locally on your machine using the docker run command.
+
+### Tag container image
+The Apache/PHP container image needs to be pushed to the SWR container registry for deployment on the CCE Cluster. Depending on your use case, choose one of the following options for tagging and pushing the image.
+
+After obtaining the Login command and authenticating to SWR.
+
+For inter-cluster access
+```
+sudo docker tag apache-php:latest registry.eu-west-0.prod-cloud-ocb.orange-business.com/SWR_organization/apache-php:latest
+```
+
+For intra-cluster access
+```
+sudo docker tag apache-php:latest <Intra IP address>:20202/SWR_organization/apache-php:latest
+```
+
+### Push container image
+After tagging the image, push it to the SWR container registry:
+
+```
+sudo docker push registry.eu-west-0.prod-cloud-ocb.orange-business.com/SWR_organization/apache-php:latest
+```
+
+### Deploy Helm chart on CCE
+Before deploying the Helm chart on your CCE Cluster, make sure to update the container image and tag in the values.yaml file.
+After authenticating to the cluster using the kubeconfig.json file, you can perform kubectl commands from your local machine on your CCE. To deploy the Helm chart, use the following command:
+
+```
+helm install simple-apache .
+```
+
+This will deploy a simple Apache/PHP stack on your CCE Cluster, connecting to the RDS (MySQL) and DDS (MongoDB) databases
