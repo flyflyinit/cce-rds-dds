@@ -26,7 +26,7 @@ sudo docker build --tag apache-php:latest .
 Once the image is built, you can deploy it locally on your machine using the docker run command.
 
 ### Tag container image
-The Apache/PHP container image needs to be pushed to the SWR container registry for deployment on the CCE Cluster. Depending on your use case, choose one of the following options for tagging and pushing the image.
+The Apache/PHP container image could be pushed to the SWR container registry for deployment on the CCE Cluster. Depending on your use case, choose one of the following options for tagging and pushing the image.
 
 After obtaining the Login command and authenticating to SWR.
 
@@ -55,7 +55,7 @@ After authenticating to the cluster using the kubeconfig.json file, you can perf
 helm install simple-apache .
 ```
 
-This will deploy a simple Apache/PHP stack on your CCE Cluster, connecting to the RDS (MySQL) and DDS (MongoDB) databases.
+This will deploy the Apache/PHP stack on your CCE Cluster, connecting to the RDS (MySQL) and DDS (MongoDB) databases. as well the networking service to have access to your container from your CCE node.
 
 ### Access the apache server
 retrieve the node ip address, and the port number.
