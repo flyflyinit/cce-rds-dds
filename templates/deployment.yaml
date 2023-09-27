@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appName }}-deployment
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: apache
+  replicas: {{ .Values.replicas }} 
+  template:
+    metadata:
+      labels:
+        app: apache
+    spec:
+      containers:
+      - name: container-see-name
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        pullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: 80

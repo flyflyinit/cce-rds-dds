@@ -1,0 +1,12 @@
+replicas: 1
+namespace: default
+appName: webapp-apache
+image:
+  repository: CONTAINER_IMAGE
+  tag: latest
+  imagePullPolicy: IfNotPresent
+
+service:
+  name: apache-service
+  type: ClusterIP
+  port: 80
