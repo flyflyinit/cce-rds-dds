@@ -7,7 +7,7 @@ Before deploying the Apache/PHP stack on your CCE Cluster, ensure you have the f
 - RDS (MySQL) Database: Set up and configure an RDS MySQL database for your application.
 - DDS (MongoDB) Database: Create and configure a DDS MongoDB database for your application.
 - CCE Cluster: You should have a Container Cloud Engine (CCE) Cluster provisioned and accessible.
-- SWR Organization: Ensure that you have access to the SWR (ServiceWare Registry) organization for container image storage.
+- SWR Organization: Ensure that you have access to the SWR organization for container image storage.
 
 ### Setup Php environment variables
 Update environment variables with your MySQL and MongoDB credentials, on index.php
@@ -52,4 +52,11 @@ After authenticating to the cluster using the kubeconfig.json file, you can perf
 helm install simple-apache .
 ```
 
-This will deploy a simple Apache/PHP stack on your CCE Cluster, connecting to the RDS (MySQL) and DDS (MongoDB) databases
+This will deploy a simple Apache/PHP stack on your CCE Cluster, connecting to the RDS (MySQL) and DDS (MongoDB) databases.
+
+### Access the apache server
+retrieve the node ip address, and the port number.
+```
+http://<NODE IP>:<NODE PORT>
+```
+
