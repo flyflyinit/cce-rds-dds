@@ -2,11 +2,54 @@ replicas: 1
 namespace: default
 appName: webapp-apache
 image:
-  repository: CONTAINER_IMAGE
-  tag: latest
+  repository: <CONTAINER IMAGE>
+  tag: <CONTAINER TAG>
   imagePullPolicy: IfNotPresent
+  env:
+    - name: "mysqluser"
+      valueFrom:
+        secretKeyRef:
+          key: mysqluser
+    - name: "mysqlpass"
+      valueFrom:
+        secretKeyRef:
+          key: mysqlpass
+    - name: "mysqlip"
+      valueFrom:
+        secretKeyRef:
+          key: mysqlip
+    - name: "mysqldb"
+      valueFrom:
+        secretKeyRef:
+          key: mysqldb
+    - name: "mongodbuser"
+      valueFrom:
+        secretKeyRef:
+          key: mongodbuser
+    - name: "mongodbpass"
+      valueFrom:
+        secretKeyRef:
+          key: mongodbpass
+    - name: "mongodbip"
+      valueFrom:
+        secretKeyRef:
+          key: mongodbip
+    - name: "mongodb"
+      valueFrom:
+        secretKeyRef:
+          key: mongodb
 
 service:
   name: apache-service
   type: ClusterIP
   port: 80
+
+mysqluser: "<USER>"
+mysqlpass: "<PASSWORD>"
+mysqlip: "<IP ADDRESS>"
+mysqldb: "<DATABASE>"
+
+mongodbuser: "<USER>"
+mongodbpass: "<PASSWORD>"
+mongodbip: "<IP ADDRESS>"
+mongodb: "<DATABASE>"
