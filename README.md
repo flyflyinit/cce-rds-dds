@@ -1,5 +1,5 @@
 # Simple Helm chart deployment of an Apache/PHP stack on CCE Cluster connecting to RDS(MySQL) and DDS(MongoDB) databases
-This README provides instructions for deploying an Apache/PHP stack on a CCE Cluster, with connections to RDS (MySQL) and DDS (MongoDB) databases. This deployment is achieved using Docker and Helm charts.
+This README provides instructions for deploying an Apache/PHP stack on a CCE Cluster, with connections to RDS (MySQL) and DDS (MongoDB) databases. This deployment is achieved using Kubernetes and Helm charts.
 
 ## Diagram
 ![Alt text](https://github.com/flyflyinit/cce-rds-dds/blob/main/apache-cce-dds-rds.png)
