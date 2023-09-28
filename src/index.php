@@ -4,10 +4,16 @@ echo "Apache is running!";
 <hr>
 <?php
 // MySQL Connection
-$mysqlHost = "MySQL IP Address";  
-$mysqlUsername = "root";  
-$mysqlPassword = "MySQL Password";  
-$mysqlDatabase = "db"; 
+$mysqlUsername = getenv("mysqluser");
+$mysqlPassword = getenv("mysqlpass");
+$mysqlHost = getenv("mysqlip");
+$mysqlDatabase = getenv("mysqldb");
+
+// MongoDB Connection
+$mongoUsername = getenv("mongodbuser");
+$mongoPassword = getenv("mongodbpass");
+$mongoHost = getenv("mongodbip");
+$mongoDatabase = getenv("mongodb");
 
 // Create connection
 $conn = new mysqli($mysqlHost, $mysqlUsername, $mysqlPassword, $mysqlDatabase);
@@ -20,11 +26,6 @@ echo "Connected successfully to MySQL!";
 ?>
 <br>
 <?php
-// MongoDB Connection
-$mongoHost = "Mongo IP Address";  
-$mongoUsername = "rwuser";  
-$mongoPassword = "MongoDB Password";  
-$mongoDatabase = "test"; 
 
 require_once __DIR__ . '/vendor/autoload.php';
 use MongoDB\Client;
