@@ -12,9 +12,6 @@ Before deploying the Apache/PHP stack on your CCE Cluster, ensure you have the f
 - CCE Cluster: You should have a Container Cloud Engine (CCE) Cluster provisioned and accessible.
 - SWR Organization: Ensure that you have access to the SWR organization for container image storage.
 
-### Setup Php environment variables
-Update environment variables with your MySQL and MongoDB credentials, on index.php
-
 ### Build Docker image from Dockerfile
 
 First, build the Docker image from the provided Dockerfile using the following command:
@@ -46,6 +43,9 @@ After tagging the image, push it to the SWR container registry:
 ```
 sudo docker push registry.eu-west-0.prod-cloud-ocb.orange-business.com/SWR_organization/apache-php:latest
 ```
+### Setup DBs environment variables
+Update environment variables including Container image on SWR, MySQL and MongoDB credentials, on values.yaml
+These DB vars will be passed to the PHP webpage to connect to the databases
 
 ### Deploy Helm chart on CCE
 Before deploying the Helm chart on your CCE Cluster, make sure to update the container image and tag in the values.yaml file.
